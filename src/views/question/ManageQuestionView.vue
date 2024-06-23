@@ -104,7 +104,7 @@ const columns = [
   {
     title: "标题",
     dataIndex: "title",
-    width: 100,
+    width: 200,
   },
   // {
   //   title: "内容",

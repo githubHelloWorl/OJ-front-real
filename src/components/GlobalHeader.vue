@@ -78,7 +78,7 @@ router.afterEach((to, from, failure) => {
 // 登录
 const handlerToLogin = () => {
   router.replace({
-    path: "/user/login",
+    path: "/userLogin",
   });
 };
 

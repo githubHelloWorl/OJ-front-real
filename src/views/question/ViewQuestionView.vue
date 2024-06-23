@@ -10,10 +10,10 @@
                 :column="{ xs: 1, md: 2, lg: 3 }"
               >
                 <a-descriptions-item label="时间限制">
-                  {{ question.judgeConfig.timeLimit ?? 0 }}
+                  {{ question.judgeConfig.timeLimit ?? 0 }} &nbsp;ms
                 </a-descriptions-item>
                 <a-descriptions-item label="内存限制">
-                  {{ question?.judgeConfig.memoryLimit ?? 0 }}
+                  {{ question?.judgeConfig.memoryLimit ?? 0 }} &nbsp;kb
                 </a-descriptions-item>
                 <a-descriptions-item label="堆栈限制">
                   {{ question.judgeConfig.stackLimit ?? 0 }}
@@ -33,7 +33,7 @@
             </a-card>
           </a-tab-pane>
           <a-tab-pane key="comment" title="评论" disabled> 评论区</a-tab-pane>
-          <a-tab-pane key="answer" title="答案"> 暂时无法查看答案 </a-tab-pane>
+          <a-tab-pane key="answer" title="答案"> 暂时无法查看答案</a-tab-pane>
         </a-tabs>
       </a-col>
       <a-col :md="12" :xs="24">

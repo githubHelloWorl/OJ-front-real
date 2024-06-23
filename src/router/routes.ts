@@ -13,21 +13,21 @@ import ViewQuestionView from "@/views/question/ViewQuestionView.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {
-    path: "/user",
-    name: "用户",
+    path: "/userLogin",
+    name: "用户登录",
     component: UserLayout,
-    children: [
-      {
-        path: "/user/login",
-        name: "用户登录",
-        component: UserLoginView,
-      },
-      {
-        path: "/user/register",
-        name: "用户注册",
-        component: UserRegisterView,
-      },
-    ],
+    // children: [
+    //   {
+    //     path: "/user/login",
+    //     name: "用户登录",
+    //     component: UserLoginView,
+    //   },
+    //   {
+    //     path: "/user/register",
+    //     name: "用户注册",
+    //     component: UserRegisterView,
+    //   },
+    // ],
     meta: {
       hideInMenu: true,
     },

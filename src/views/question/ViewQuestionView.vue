@@ -13,7 +13,7 @@
                   {{ question.judgeConfig.timeLimit ?? 0 }} &nbsp;ms
                 </a-descriptions-item>
                 <a-descriptions-item label="内存限制">
-                  {{ question?.judgeConfig.memoryLimit ?? 0 }} &nbsp;kb
+                  {{ question?.judgeConfig.memoryLimit ?? 0 }} &nbsp;mb
                 </a-descriptions-item>
                 <a-descriptions-item label="堆栈限制">
                   {{ question.judgeConfig.stackLimit ?? 0 }}

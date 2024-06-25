@@ -40,7 +40,7 @@
         结果: {{ record.judgeInfo.message }} &nbsp;&nbsp;&nbsp;&nbsp; 时间:
         {{ record.judgeInfo.time }}&nbsp;ms&nbsp;&nbsp;&nbsp; 内存:
         {{ Number(record.judgeInfo.memory) / 1000 }}
-        &nbsp;kb
+        &nbsp;mb
         <!--        {{ JSON.stringify(record.judgeInfo) }}-->
       </template>
       <template #createTime="{ record }">

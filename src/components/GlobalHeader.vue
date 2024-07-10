@@ -25,17 +25,11 @@
       <!--      <div @click="handlerToLogin">-->
       <!--        -->
       <!--      </div>-->
-      <a-trigger trigger="hover">
+      <a-tooltip content="点击进行登录">
         <a-button @click="handlerToLogin"
           >{{ store.state.user?.loginUser?.userName ?? "未登录" }}
         </a-button>
-        <template #content>
-          <div class="demo-trigger">
-            <br />
-            <span>点击进行登录</span>
-          </div>
-        </template>
-      </a-trigger>
+      </a-tooltip>
     </a-col>
   </a-row>
 </template>

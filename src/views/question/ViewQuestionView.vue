@@ -34,7 +34,9 @@
           </a-tab-pane>
           <a-tab-pane key="comment" title="评论" disabled> 评论区</a-tab-pane>
           <a-tab-pane key="answer" title="答案">
-            <MdViewer :value="question?.answer || ''" />
+            <a-card v-if="question" title="答案">
+              <MdViewer :value="question?.answer || ''" />
+            </a-card>
           </a-tab-pane>
         </a-tabs>
       </a-col>

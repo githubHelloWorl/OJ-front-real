@@ -4,7 +4,6 @@
     ref="codeEditorRef"
     style="min-height: 400px; height: 60vh"
   />
-  <!--  <a-button @click="fillValue">填充值</a-button>-->
 </template>
 
 <script setup lang="ts">
@@ -34,17 +33,41 @@ const props = withDefaults(defineProps<Props>(), {
 const codeEditorRef = ref();
 const codeEditor = ref();
 
-// const fillValue = () => {
-//   if (!codeEditor.value) {
-//     return;
-//   }
-//   // 改变值
-//   toRaw(codeEditor.value).setValue("新的值");
-// };
-
 watch(
   () => props.language,
   () => {
+    /**
+     * 修改代码,根据语言
+     */
+    let code = "";
+    if (props.language === "java") {
+      code =
+        "public class Main{\n" +
+        "    public static void main(String[] args){\n" +
+        "\n" +
+        "    }\n" +
+        "}";
+    } else if (props.language === "cpp") {
+      code =
+        "#include <iostream>\n" +
+        "\n" +
+        "int main() {\n" +
+        '\tstd::cout << "" << std::endl;\n' +
+        "\treturn 0;\n" +
+        "}";
+    } else if (props.language === "c") {
+      code =
+        "#include<stdio.h>\n" +
+        "\n" +
+        "int main(){\n" +
+        '\tprintf("");\n' +
+        "\treturn 0;\n" +
+        "}";
+    } else if (props.language === "python") {
+      code = "print('')";
+    }
+    toRaw(codeEditor.value).setValue(code);
+
     if (codeEditor.value) {
       monaco.editor.setModelLanguage(
         toRaw(codeEditor.value).getModel(),
@@ -79,14 +102,6 @@ onMounted(() => {
     props.handleChange(toRaw(codeEditor.value).getValue());
   });
 });
-
-/* 初始值
-public class Main{
-    public static void main(String[] args){
-
-    }
-}
- */
 </script>
 
 <style scoped></style>

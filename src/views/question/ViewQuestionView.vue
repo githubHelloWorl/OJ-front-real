@@ -52,10 +52,10 @@
               :style="{ width: '320px' }"
               placeholder="选择编程语言"
             >
-              <a-option>java</a-option>
-              <a-option :disabled="true">cpp</a-option>
-              <a-option :disabled="true">go</a-option>
-              <a-option :disabled="true">html</a-option>
+              <a-option label="java" value="java">java</a-option>
+              <a-option label="cpp" value="cpp">cpp</a-option>
+              <a-option label="c" value="c">c</a-option>
+              <a-option label="python" value="python">python</a-option>
             </a-select>
           </a-form-item>
         </a-form>
@@ -68,13 +68,23 @@
         <a-button type="primary" style="min-width: 200px" @click="doSubmit">
           提交代码
         </a-button>
+        <a-ubtton @click="console.log(form.language)">aaa</a-ubtton>
       </a-col>
     </a-row>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watchEffect, withDefaults, defineProps } from "vue";
+import {
+  onMounted,
+  ref,
+  watchEffect,
+  withDefaults,
+  defineProps,
+  watch,
+  reactive,
+  nextTick,
+} from "vue";
 import message from "@arco-design/web-vue/es/message";
 import CodeEditor from "@/components/CodeEditor.vue";
 import MdViewer from "@/components/MdViewer.vue";
@@ -105,7 +115,7 @@ const loadData = async () => {
   }
 };
 
-const form = ref<QuestionSubmitAddRequest>({
+const form = reactive<QuestionSubmitAddRequest>({
   language: "java",
   code:
     "public class Main{\n" +
@@ -124,7 +134,7 @@ const doSubmit = async () => {
   }
 
   const res = await QuestionControllerService.doQuestionSubmitUsingPost({
-    ...form.value,
+    ...form,
     questionId: question.value.id,
   });
   if (res.code === 0) {
@@ -142,7 +152,11 @@ onMounted(() => {
 });
 
 const changeCode = (value: string) => {
-  form.value.code = value;
+  form.code = value;
+  nextTick(() => {
+    // 等待 Vue 更新 DOM
+    console.log(form); // 这里可能不需要，取决于你的需求
+  });
 };
 </script>
 

@@ -64,27 +64,43 @@
           :language="form.language"
           :handle-change="changeCode"
         />
-        <a-divider size="0" />
-        <a-button type="primary" style="min-width: 200px" @click="doSubmit">
-          提交代码
-        </a-button>
-        <a-ubtton @click="console.log(form.language)">aaa</a-ubtton>
+        <a-divider :size="0" />
+        <a-row :gutter="24">
+          <a-col :span="5">
+            <a-button
+              type="primary"
+              style="min-width: 100px"
+              @click="doSubmit('remote')"
+            >
+              提交(终端)
+            </a-button>
+          </a-col>
+          <a-col :span="5">
+            <a-button
+              type="primary"
+              style="min-width: 100px"
+              @click="doSubmit('remoteDocker')"
+            >
+              提交(容器)
+            </a-button>
+          </a-col>
+          <a-col :span="5">
+            <a-button
+              type="primary"
+              style="min-width: 100px"
+              @click="doSubmit('AI')"
+            >
+              提交(AI)
+            </a-button>
+          </a-col>
+        </a-row>
       </a-col>
     </a-row>
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  onMounted,
-  ref,
-  watchEffect,
-  withDefaults,
-  defineProps,
-  watch,
-  reactive,
-  nextTick,
-} from "vue";
+import { onMounted, ref, withDefaults, defineProps, reactive } from "vue";
 import message from "@arco-design/web-vue/es/message";
 import CodeEditor from "@/components/CodeEditor.vue";
 import MdViewer from "@/components/MdViewer.vue";
@@ -126,9 +142,17 @@ const form = reactive<QuestionSubmitAddRequest>({
 });
 
 /**
+ * 改动代码
+ * @param value
+ */
+const changeCode = (value: string) => {
+  form.code = value;
+};
+
+/**
  * 提交代码
  */
-const doSubmit = async () => {
+const doSubmit = async (type: string) => {
   if (!question.value?.id) {
     return;
   }
@@ -136,6 +160,7 @@ const doSubmit = async () => {
   const res = await QuestionControllerService.doQuestionSubmitUsingPost({
     ...form,
     questionId: question.value.id,
+    type: type,
   });
   if (res.code === 0) {
     message.success("提交成功");
@@ -150,14 +175,6 @@ const doSubmit = async () => {
 onMounted(() => {
   loadData();
 });
-
-const changeCode = (value: string) => {
-  form.code = value;
-  nextTick(() => {
-    // 等待 Vue 更新 DOM
-    console.log(form); // 这里可能不需要，取决于你的需求
-  });
-};
 </script>
 
 <style>

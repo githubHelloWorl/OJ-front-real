@@ -50,8 +50,8 @@ watch(
     } else if (props.language === "cpp") {
       code =
         "#include <iostream>\n" +
-        "\n" +
-        "int main() {\n" +
+        "using namespace std;\n" +
+        "int main(int argc, char *argv[]) {\n" +
         '\tstd::cout << "" << std::endl;\n' +
         "\treturn 0;\n" +
         "}";
@@ -59,7 +59,7 @@ watch(
       code =
         "#include<stdio.h>\n" +
         "\n" +
-        "int main(){\n" +
+        "int main(int argc, char *argv[]){\n" +
         '\tprintf("");\n' +
         "\treturn 0;\n" +
         "}";
